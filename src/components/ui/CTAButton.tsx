@@ -18,21 +18,31 @@ interface CTAButtonProps {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-kaizer-blue text-white border border-kaizer-blue hover:bg-kaizer-blue-dark hover:border-kaizer-blue-dark active:scale-[0.97]",
+    "bg-kaizer-cyan text-kaizer-dark border border-kaizer-cyan font-bold " +
+    "hover:bg-kaizer-cyan-light hover:border-kaizer-cyan-light " +
+    "shadow-[0_0_20px_rgba(0,192,222,0.25)] hover:shadow-[0_0_28px_rgba(0,192,222,0.40)] " +
+    "active:scale-[0.97]",
   outline:
-    "bg-transparent text-kaizer-blue border border-kaizer-blue hover:bg-kaizer-blue hover:text-white active:scale-[0.97]",
+    "bg-transparent text-kaizer-cyan border-2 border-kaizer-cyan font-bold " +
+    "hover:bg-kaizer-cyan hover:text-kaizer-dark " +
+    "active:scale-[0.97]",
   ghost:
-    "bg-transparent text-kaizer-light border border-transparent hover:text-white hover:border-kaizer-border active:scale-[0.97]",
+    "bg-transparent text-kaizer-white border border-transparent font-semibold " +
+    "hover:text-white hover:border-kaizer-border " +
+    "active:scale-[0.97]",
 };
 
 const sizeClasses: Record<Size, string> = {
-  sm: "px-4 py-1.5 text-sm",
-  md: "px-6 py-2.5 text-sm font-semibold",
-  lg: "px-8 py-3 text-base font-semibold",
+  sm: "px-5 py-2 text-sm",
+  md: "px-7 py-3 text-base",
+  lg: "px-9 py-3.5 text-base",
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] transition-all duration-200 cursor-pointer tracking-wide select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kaizer-blue disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] " +
+  "transition-all duration-200 cursor-pointer tracking-wide select-none " +
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kaizer-cyan " +
+  "disabled:opacity-50 disabled:pointer-events-none";
 
 /**
  * Botón CTA reutilizable.

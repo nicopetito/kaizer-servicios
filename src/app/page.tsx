@@ -19,18 +19,18 @@ export default function HomePage() {
         {/* Fondo con gradiente sutil */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-kaizer-blue/5 via-transparent to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-kaizer-cyan/5 via-transparent to-transparent"
         />
 
         <Container>
           <div className="mx-auto max-w-3xl flex flex-col items-center gap-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-kaizer-blue/30 bg-kaizer-blue/10 px-4 py-1.5 text-xs font-medium text-kaizer-blue uppercase tracking-widest">
+            <span className="inline-flex items-center gap-2 rounded-full border border-kaizer-cyan/30 bg-kaizer-cyan/10 px-4 py-1.5 text-xs font-medium text-kaizer-cyan uppercase tracking-widest">
               Mar del Plata · Servicios Industriales
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-kaizer-white leading-tight tracking-tight">
               Soluciones industriales{" "}
-              <span className="text-kaizer-blue">a medida</span>
+              <span className="text-kaizer-cyan">a medida</span>
             </h1>
 
             <p className="text-kaizer-muted text-lg sm:text-xl max-w-2xl leading-relaxed">
@@ -62,7 +62,7 @@ export default function HomePage() {
               { value: "24/7",   label: "Soporte técnico" },
             ].map(({ value, label }) => (
               <div key={label} className="flex flex-col gap-1">
-                <dt className="text-3xl font-bold text-kaizer-blue">{value}</dt>
+                <dt className="text-3xl font-bold text-kaizer-cyan">{value}</dt>
                 <dd className="text-sm text-kaizer-muted">{label}</dd>
               </div>
             ))}

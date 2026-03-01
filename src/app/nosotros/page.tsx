@@ -14,7 +14,7 @@ export default function NosotrosPage() {
       <header className="py-16 bg-kaizer-surface border-b border-kaizer-border">
         <Container>
           <div className="max-w-2xl">
-            <span className="text-kaizer-blue text-sm font-semibold uppercase tracking-widest">
+            <span className="text-kaizer-cyan text-sm font-semibold uppercase tracking-widest">
               Quiénes somos
             </span>
             <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-kaizer-white leading-tight">
@@ -69,7 +69,7 @@ export default function NosotrosPage() {
                   key={title}
                   className="rounded-[var(--radius-lg)] border border-kaizer-border bg-kaizer-surface p-5"
                 >
-                  <div className="h-1 w-8 bg-kaizer-blue rounded-full mb-3" />
+                  <div className="h-1 w-8 bg-kaizer-cyan rounded-full mb-3" />
                   <h3 className="font-semibold text-kaizer-white mb-1">{title}</h3>
                   <p className="text-sm text-kaizer-muted">{desc}</p>
                 </div>

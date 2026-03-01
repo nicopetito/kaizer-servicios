@@ -73,13 +73,16 @@ export default function Footer() {
 
           {/* Col 1 — Marca */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2 group mb-4">
-              <span className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-sm)] bg-kaizer-blue text-white font-bold text-sm">
-                K
-              </span>
-              <span className="text-kaizer-white font-semibold text-base tracking-tight">
-                Kaizer Servicios
-              </span>
+            <Link href="/" className="inline-flex items-center mb-4">
+              <svg viewBox="0 0 110 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Kaizer Servicios" className="h-8 w-auto">
+                <rect x="0" y="0" width="36" height="36" rx="18" fill="#07090E" />
+                <rect x="0.5" y="0.5" width="35" height="35" rx="17.5" stroke="#1A2235" strokeWidth="1" />
+                <rect x="10" y="9" width="4" height="18" rx="1.5" fill="#EEF4FB" />
+                <path d="M14 18 L26 9 L26 13 L17 18.5Z" fill="#00C0DE" />
+                <path d="M14 18 L26 27 L26 23 L17 17.5Z" fill="#EEF4FB" />
+                <text x="42" y="14" fontFamily="Inter, sans-serif" fontSize="10" fontWeight="700" letterSpacing="2" fill="#EEF4FB">KAIZER</text>
+                <text x="42" y="27" fontFamily="Inter, sans-serif" fontSize="7.5" fontWeight="400" letterSpacing="3" fill="#8FA3BB">SERVICIOS</text>
+              </svg>
             </Link>
             <p className="text-kaizer-muted text-sm leading-relaxed max-w-xs">
               Empresa de servicios industriales con presencia en Mar del Plata
@@ -150,7 +153,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="flex items-center justify-center w-9 h-9 rounded-[var(--radius-md)] bg-kaizer-border text-kaizer-muted hover:bg-kaizer-blue hover:text-white transition-all duration-200"
+                  className="flex items-center justify-center w-9 h-9 rounded-[var(--radius-md)] bg-kaizer-border text-kaizer-muted hover:bg-kaizer-cyan hover:text-kaizer-dark transition-all duration-200"
                 >
                   <SocialIcon icon={social.icon} />
                 </a>

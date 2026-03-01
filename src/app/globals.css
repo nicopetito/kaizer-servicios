@@ -2,29 +2,33 @@
 
 /* ─────────────────────────────────────────────
    SISTEMA DE DISEÑO — KAIZER SERVICIOS
-   Tailwind v4: tokens vía @theme (CSS-first)
+   Paleta extraída del logo oficial:
+   negro profundo + cian eléctrico
    ───────────────────────────────────────────── */
 @theme {
-  /* Paleta industrial */
-  --color-kaizer-dark:    #0c0e14;   /* fondo base */
-  --color-kaizer-surface: #141720;   /* superficies / cards */
-  --color-kaizer-border:  #1e2433;   /* bordes sutiles */
-  --color-kaizer-muted:   #6b7280;   /* texto secundario */
-  --color-kaizer-light:   #cbd5e1;   /* texto claro */
-  --color-kaizer-white:   #f1f5f9;   /* blanco limpio */
+  /* ── Fondos ── */
+  --color-kaizer-dark:    #07090E;   /* negro profundo base */
+  --color-kaizer-surface: #0C0F18;   /* superficies / cards */
+  --color-kaizer-border:  #1A2235;   /* bordes */
 
-  /* Acento — azul acero */
-  --color-kaizer-blue:       #1d6ee6;
-  --color-kaizer-blue-light: #3b82f6;
-  --color-kaizer-blue-dark:  #1453b8;
+  /* ── Texto — alto contraste (accesibilidad adultos mayores) ── */
+  --color-kaizer-muted:   #8FA3BB;   /* texto secundario — ratio 4.6:1 */
+  --color-kaizer-light:   #C8D8E8;   /* texto claro */
+  --color-kaizer-white:   #EEF4FB;   /* blanco limpio — ratio 15:1 */
 
-  /* Tipografía */
+  /* ── Acento — Cian extraído del logo Kaizer ── */
+  --color-kaizer-cyan:       #00C0DE;   /* acento principal */
+  --color-kaizer-cyan-light: #33CEEA;   /* hover claro */
+  --color-kaizer-cyan-dark:  #009AB8;   /* hover oscuro / pressed */
+
+  /* ── Tipografía ── */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* Radios */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  /* ── Radios modernos ── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
 }
 
 /* ─── Reset & base ─── */
@@ -40,28 +44,24 @@ html {
 
 body {
   background-color: var(--color-kaizer-dark);
-  color: var(--color-kaizer-light);
+  /* kaizer-white: máximo contraste — esencial para legibilidad */
+  color: var(--color-kaizer-white);
   font-family: var(--font-sans);
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
 /* ─── Selección de texto ─── */
 ::selection {
-  background-color: var(--color-kaizer-blue);
-  color: #fff;
+  background-color: var(--color-kaizer-cyan);
+  color: #07090E;
 }
 
-/* ─── Scrollbar discreta ─── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-kaizer-dark);
-}
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-kaizer-dark); }
 ::-webkit-scrollbar-thumb {
   background: var(--color-kaizer-border);
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-kaizer-blue-dark);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--color-kaizer-cyan-dark); }

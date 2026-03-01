@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { SITE_NAME, SITE_DESCRIPTION, CONTACT_INFO } from "@/lib/constants";
+import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 
 // Inter — tipografía moderna, legible y profesional
 const inter = Inter({
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0c0e14",
+  themeColor: "#07090E",
   width:      "device-width",
   initialScale: 1,
 };
@@ -54,7 +54,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es-AR" className={inter.variable}>
-      <body className="min-h-dvh flex flex-col antialiased bg-kaizer-dark text-kaizer-light">
+      <body className="min-h-dvh flex flex-col antialiased bg-kaizer-dark text-kaizer-white">
         {/* Navbar fijo en el top */}
         <Navbar />
 

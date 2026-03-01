@@ -15,7 +15,7 @@ export default function ContactoPage() {
       <header className="py-16 bg-kaizer-surface border-b border-kaizer-border">
         <Container>
           <div className="max-w-2xl">
-            <span className="text-kaizer-blue text-sm font-semibold uppercase tracking-widest">
+            <span className="text-kaizer-cyan text-sm font-semibold uppercase tracking-widest">
               Estamos para ayudarte
             </span>
             <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-kaizer-white leading-tight">
@@ -51,7 +51,7 @@ export default function ContactoPage() {
                       type="text"
                       required
                       placeholder="Tu nombre"
-                      className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-blue transition-colors duration-150"
+                      className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-cyan transition-colors duration-150"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -63,7 +63,7 @@ export default function ContactoPage() {
                       name="empresa"
                       type="text"
                       placeholder="Nombre de tu empresa"
-                      className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-blue transition-colors duration-150"
+                      className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-cyan transition-colors duration-150"
                     />
                   </div>
                 </div>
@@ -78,7 +78,7 @@ export default function ContactoPage() {
                     type="email"
                     required
                     placeholder="tu@email.com"
-                    className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-blue transition-colors duration-150"
+                    className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-cyan transition-colors duration-150"
                   />
                 </div>
 
@@ -91,7 +91,7 @@ export default function ContactoPage() {
                     name="telefono"
                     type="tel"
                     placeholder="+54 223 000-0000"
-                    className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-blue transition-colors duration-150"
+                    className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-cyan transition-colors duration-150"
                   />
                 </div>
 
@@ -105,7 +105,7 @@ export default function ContactoPage() {
                     required
                     rows={5}
                     placeholder="Contanos en qué podemos ayudarte..."
-                    className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-blue transition-colors duration-150 resize-none"
+                    className="rounded-[var(--radius-md)] border border-kaizer-border bg-kaizer-surface px-4 py-2.5 text-sm text-kaizer-light placeholder:text-kaizer-muted/60 focus:outline-none focus:border-kaizer-cyan transition-colors duration-150 resize-none"
                   />
                 </div>
 
@@ -146,7 +146,7 @@ export default function ContactoPage() {
                 </div>
               </div>
 
-              <div className="rounded-[var(--radius-lg)] border border-kaizer-blue/20 bg-kaizer-blue/5 p-6">
+              <div className="rounded-[var(--radius-lg)] border border-kaizer-cyan/20 bg-kaizer-cyan/5 p-6">
                 <h3 className="font-semibold text-kaizer-white mb-2">Presupuestos sin cargo</h3>
                 <p className="text-sm text-kaizer-muted leading-relaxed">
                   Analizamos tu necesidad y te enviamos una cotización detallada

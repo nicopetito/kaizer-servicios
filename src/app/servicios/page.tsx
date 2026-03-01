@@ -14,7 +14,7 @@ export default function ServiciosPage() {
       <header className="py-16 bg-kaizer-surface border-b border-kaizer-border">
         <Container>
           <div className="max-w-2xl">
-            <span className="text-kaizer-blue text-sm font-semibold uppercase tracking-widest">
+            <span className="text-kaizer-cyan text-sm font-semibold uppercase tracking-widest">
               Lo que hacemos
             </span>
             <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-kaizer-white leading-tight">
@@ -38,7 +38,7 @@ export default function ServiciosPage() {
                 key={i}
                 className="rounded-[var(--radius-lg)] border border-kaizer-border bg-kaizer-surface p-6 flex flex-col gap-3"
               >
-                <div className="h-10 w-10 rounded-[var(--radius-md)] bg-kaizer-blue/10 border border-kaizer-blue/20" />
+                <div className="h-10 w-10 rounded-[var(--radius-md)] bg-kaizer-cyan/10 border border-kaizer-cyan/20" />
                 <div className="h-4 w-3/4 rounded bg-kaizer-border" />
                 <div className="space-y-2">
                   <div className="h-3 w-full rounded bg-kaizer-border/60" />

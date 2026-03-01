@@ -14,7 +14,7 @@ export default function CatalogoPage() {
       <header className="py-16 bg-kaizer-surface border-b border-kaizer-border">
         <Container>
           <div className="max-w-2xl">
-            <span className="text-kaizer-blue text-sm font-semibold uppercase tracking-widest">
+            <span className="text-kaizer-cyan text-sm font-semibold uppercase tracking-widest">
               Productos
             </span>
             <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-kaizer-white leading-tight">
@@ -38,8 +38,8 @@ export default function CatalogoPage() {
                 className={[
                   "px-4 py-1.5 rounded-full text-sm border transition-colors duration-150",
                   cat === "Todos"
-                    ? "bg-kaizer-blue border-kaizer-blue text-white"
-                    : "bg-transparent border-kaizer-border text-kaizer-muted hover:border-kaizer-blue/50 hover:text-kaizer-light",
+                    ? "bg-kaizer-cyan border-kaizer-cyan text-white"
+                    : "bg-transparent border-kaizer-border text-kaizer-muted hover:border-kaizer-cyan/50 hover:text-kaizer-light",
                 ].join(" ")}
               >
                 {cat}
