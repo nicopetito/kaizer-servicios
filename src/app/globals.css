@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   SISTEMA DE DISEÑO — KAIZER SERVICIOS
+   Tailwind v4: tokens vía @theme (CSS-first)
+   ───────────────────────────────────────────── */
+@theme {
+  /* Paleta industrial */
+  --color-kaizer-dark:    #0c0e14;   /* fondo base */
+  --color-kaizer-surface: #141720;   /* superficies / cards */
+  --color-kaizer-border:  #1e2433;   /* bordes sutiles */
+  --color-kaizer-muted:   #6b7280;   /* texto secundario */
+  --color-kaizer-light:   #cbd5e1;   /* texto claro */
+  --color-kaizer-white:   #f1f5f9;   /* blanco limpio */
+
+  /* Acento — azul acero */
+  --color-kaizer-blue:       #1d6ee6;
+  --color-kaizer-blue-light: #3b82f6;
+  --color-kaizer-blue-dark:  #1453b8;
+
+  /* Tipografía */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Radios */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* ─── Reset & base ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-kaizer-dark);
+  color: var(--color-kaizer-light);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* ─── Selección de texto ─── */
+::selection {
+  background-color: var(--color-kaizer-blue);
+  color: #fff;
+}
+
+/* ─── Scrollbar discreta ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-kaizer-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-kaizer-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-kaizer-blue-dark);
+}
