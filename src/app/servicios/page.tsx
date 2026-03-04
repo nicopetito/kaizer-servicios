@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
+
+export const dynamic = "force-dynamic";
 import CTAButton from "@/components/ui/CTAButton";
+import { createSupabaseServerClient } from "@/lib/supabase-server";
+import type { Servicio } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Servicios",
@@ -8,37 +12,22 @@ export const metadata: Metadata = {
     "Conocé todos los servicios industriales que ofrece Kaizer Servicios en Mar del Plata.",
 };
 
-const servicios = [
-  {
-    titulo: "Pintura Industrial",
-    descripcion:
-      "Aplicamos recubrimientos anticorrosivos, esmaltes sintéticos y pinturas epoxi sobre estructuras metálicas, maquinaria pesada y naves industriales. Trabajamos con técnica airless, soplete y rodillo.",
-    etiquetas: ["Anticorrosivos", "Epoxi bicomponente", "Airless"],
-    icono: (
+// Mapeo de nombre de ícono → SVG (los íconos siguen siendo locales)
+function IconoServicio({ icono }: { icono: string | null }) {
+  const iconos: Record<string, React.ReactNode> = {
+    paint: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
         <path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 0 0-3-3z" />
         <path d="M9 8c-2 3-4 3.5-7 4l8 8c.5-3 1-5 4-7" />
         <path d="M4.5 20v-3h3" />
       </svg>
     ),
-  },
-  {
-    titulo: "Reparación de Equipos",
-    descripcion:
-      "Diagnóstico y reparación integral de equipos industriales: motores eléctricos, reductores de velocidad, bombas centrífugas y compresores de aire. Garantía en todas las intervenciones.",
-    etiquetas: ["Motores", "Bombas", "Compresores"],
-    icono: (
+    wrench: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
         <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
       </svg>
     ),
-  },
-  {
-    titulo: "Puesta en Marcha",
-    descripcion:
-      "Instalación, calibración y puesta en funcionamiento de maquinaria industrial nueva o trasladada. Verificamos cada parámetro operativo y capacitamos al personal de planta.",
-    etiquetas: ["Instalación", "Calibración", "Capacitación"],
-    icono: (
+    rocket: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
         <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
         <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
@@ -46,13 +35,7 @@ const servicios = [
         <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
       </svg>
     ),
-  },
-  {
-    titulo: "Mantenimiento Preventivo",
-    descripcion:
-      "Planes de mantenimiento periódico diseñados a medida para cada empresa. Prolongamos la vida útil de los equipos y eliminamos paradas no planificadas que afectan la producción.",
-    etiquetas: ["Planes periódicos", "Lubricación", "Inspección"],
-    icono: (
+    calendar: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
         <line x1="16" y1="2" x2="16" y2="6" />
@@ -61,32 +44,38 @@ const servicios = [
         <path d="m9 16 2 2 4-4" />
       </svg>
     ),
-  },
-  {
-    titulo: "Instalación Eléctrica Industrial",
-    descripcion:
-      "Montaje de tableros de control, tendido de cableado de fuerza y sistemas de automatización. Habilitaciones y adecuación a normativa eléctrica vigente.",
-    etiquetas: ["Tableros", "Automatización", "Normativa AEA"],
-    icono: (
+    zap: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
     ),
-  },
-  {
-    titulo: "Soldadura Industrial",
-    descripcion:
-      "Soldadura MIG/MAG, TIG y electrodo revestido en acero al carbono, inoxidable y aluminio. Fabricación de estructuras metálicas a medida y reparación de piezas en campo.",
-    etiquetas: ["MIG/MAG", "TIG", "Inoxidable"],
-    icono: (
+    flame: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
         <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
       </svg>
     ),
-  },
-];
+  };
 
-export default function ServiciosPage() {
+  const fallback = (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 8v4l3 3" />
+    </svg>
+  );
+
+  return <>{(icono && iconos[icono]) ?? fallback}</>;
+}
+
+export default async function ServiciosPage() {
+  const supabase = await createSupabaseServerClient();
+  const { data: servicios } = await supabase
+    .from("servicios")
+    .select("*")
+    .eq("activo", true)
+    .order("orden", { ascending: true });
+
+  const items: Servicio[] = servicios ?? [];
+
   return (
     <>
       {/* ── Encabezado de sección ── */}
@@ -111,20 +100,20 @@ export default function ServiciosPage() {
       <section aria-label="Lista de servicios" className="py-16">
         <Container>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {servicios.map((s) => (
+            {items.map((s) => (
               <div
-                key={s.titulo}
+                key={s.id}
                 className="rounded-[var(--radius-lg)] border border-kaizer-border bg-kaizer-surface p-6 flex flex-col gap-4 hover:border-kaizer-cyan/40 transition-colors duration-200"
               >
                 {/* Ícono */}
                 <div className="h-11 w-11 rounded-[var(--radius-md)] bg-kaizer-cyan/10 border border-kaizer-cyan/20 flex items-center justify-center text-kaizer-cyan">
-                  {s.icono}
+                  <IconoServicio icono={s.icono} />
                 </div>
 
                 {/* Título y descripción */}
                 <div className="flex flex-col gap-2 flex-1">
                   <h2 className="font-semibold text-kaizer-white text-lg leading-snug">
-                    {s.titulo}
+                    {s.nombre}
                   </h2>
                   <p className="text-sm text-kaizer-muted leading-relaxed flex-1">
                     {s.descripcion}
@@ -132,16 +121,18 @@ export default function ServiciosPage() {
                 </div>
 
                 {/* Etiquetas */}
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-kaizer-border">
-                  {s.etiquetas.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-0.5 rounded-full text-xs bg-kaizer-cyan/10 text-kaizer-cyan border border-kaizer-cyan/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                {s.etiquetas && s.etiquetas.length > 0 && (
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-kaizer-border">
+                    {s.etiquetas.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 rounded-full text-xs bg-kaizer-cyan/10 text-kaizer-cyan border border-kaizer-cyan/20"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

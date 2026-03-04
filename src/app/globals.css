@@ -2,33 +2,47 @@
 
 /* ─────────────────────────────────────────────
    SISTEMA DE DISEÑO — KAIZER SERVICIOS
-   Paleta extraída del logo oficial:
-   negro profundo + cian eléctrico
+   Modo Claro · Acento Cian · Tipografía Inter
    ───────────────────────────────────────────── */
 @theme {
   /* ── Fondos ── */
-  --color-kaizer-dark:    #07090E;   /* negro profundo base */
-  --color-kaizer-surface: #0C0F18;   /* superficies / cards */
-  --color-kaizer-border:  #1A2235;   /* bordes */
+  --color-bg-primary:   #FFFFFF;
+  --color-bg-secondary: #F6F9FC;
+  --color-bg-tertiary:  #EEF4FB;
 
-  /* ── Texto — alto contraste (accesibilidad adultos mayores) ── */
-  --color-kaizer-muted:   #8FA3BB;   /* texto secundario — ratio 4.6:1 */
-  --color-kaizer-light:   #C8D8E8;   /* texto claro */
-  --color-kaizer-white:   #EEF4FB;   /* blanco limpio — ratio 15:1 */
+  /* ── Bordes ── */
+  --color-border:       #E4EBF5;
+  --color-border-muted: #F0F4FA;
 
-  /* ── Acento — Cian extraído del logo Kaizer ── */
-  --color-kaizer-cyan:       #00C0DE;   /* acento principal */
-  --color-kaizer-cyan-light: #33CEEA;   /* hover claro */
-  --color-kaizer-cyan-dark:  #009AB8;   /* hover oscuro / pressed */
+  /* ── Texto ── */
+  --color-text-primary:   #0A0F1E;
+  --color-text-secondary: #3D5068;
+  --color-text-muted:     #7A95B0;
+
+  /* ── Acento — Cian Kaizer ── */
+  --color-kaizer-cyan:        #00C0DE;
+  --color-kaizer-cyan-light:  #33CEEA;
+  --color-kaizer-cyan-dark:   #009AB8;
+  --color-kaizer-cyan-subtle: #E6F9FD;
+
+  /* ── Compatibilidad con tokens legacy (usados en svg del logo) ── */
+  --color-kaizer-dark:    #07090E;
+  --color-kaizer-surface: #F6F9FC;
+  --color-kaizer-border:  #E4EBF5;
+  --color-kaizer-muted:   #7A95B0;
+  --color-kaizer-light:   #3D5068;
+  --color-kaizer-white:   #0A0F1E;
 
   /* ── Tipografía ── */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* ── Radios modernos ── */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
+  /* ── Radios pronunciados (estilo Apple) ── */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-full: 9999px;
 }
 
 /* ─── Reset & base ─── */
@@ -43,9 +57,8 @@ html {
 }
 
 body {
-  background-color: var(--color-kaizer-dark);
-  /* kaizer-white: máximo contraste — esencial para legibilidad */
-  color: var(--color-kaizer-white);
+  background-color: #FFFFFF;
+  color: #0A0F1E;
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.75;
@@ -54,14 +67,97 @@ body {
 /* ─── Selección de texto ─── */
 ::selection {
   background-color: var(--color-kaizer-cyan);
-  color: #07090E;
+  color: #FFFFFF;
 }
 
-/* ─── Scrollbar ─── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-kaizer-dark); }
+/* ─── Scrollbar ultra-minimalista ─── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #F6F9FC; }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-kaizer-border);
-  border-radius: 3px;
+  background: #E4EBF5;
+  border-radius: 999px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-kaizer-cyan-dark); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-kaizer-cyan); }
+
+/* ─── Utilidades de sombra ultra-minimal ─── */
+.shadow-card {
+  box-shadow: 0 1px 3px rgba(10, 15, 30, 0.06), 0 1px 2px rgba(10, 15, 30, 0.04);
+}
+.shadow-card-hover {
+  box-shadow: 0 4px 16px rgba(10, 15, 30, 0.08), 0 2px 6px rgba(10, 15, 30, 0.05);
+}
+.shadow-cyan-glow {
+  box-shadow: 0 0 0 1px rgba(0, 192, 222, 0.15), 0 4px 20px rgba(0, 192, 222, 0.12);
+}
+.shadow-cyan-glow-hover {
+  box-shadow: 0 0 0 1px rgba(0, 192, 222, 0.25), 0 6px 28px rgba(0, 192, 222, 0.20);
+}
+
+/* ─── Keyframes ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(1deg); }
+  66%       { transform: translateY(-6px) rotate(-0.5deg); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ─── Clases de animación ─── */
+.animate-float        { animation: float 6s ease-in-out infinite; }
+.animate-fade-in-up   { animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-in      { animation: fade-in 0.4s ease both; }
+.animate-scale-in     { animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-toast-in     { animation: toast-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-slide-down   { animation: slide-down 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* ─── Utilidades de blur decorativo ─── */
+.blur-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── Glassmorphism ─── */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(228, 235, 245, 0.8);
+}
+
+/* ─── Focus ring accesible ─── */
+:focus-visible {
+  outline: 2px solid var(--color-kaizer-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

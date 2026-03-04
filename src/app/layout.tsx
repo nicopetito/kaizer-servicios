@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import SiteLayout from "@/components/layout/SiteLayout";
 import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 
 // Inter — tipografía moderna, legible y profesional
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07090E",
+  themeColor: "#FFFFFF",
   width:      "device-width",
   initialScale: 1,
 };
@@ -54,16 +53,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es-AR" className={inter.variable}>
-      <body className="min-h-dvh flex flex-col antialiased bg-kaizer-dark text-kaizer-white">
-        {/* Navbar fijo en el top */}
-        <Navbar />
-
-        {/* Offset del navbar fijo (h-16) */}
-        <main className="flex-1 pt-16">
+      <body className="min-h-dvh flex flex-col antialiased bg-white text-[#0A0F1E]">
+        <SiteLayout>
           {children}
-        </main>
-
-        <Footer />
+        </SiteLayout>
       </body>
     </html>
   );

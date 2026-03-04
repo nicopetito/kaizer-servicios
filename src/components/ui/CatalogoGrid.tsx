@@ -2,19 +2,17 @@
 
 import { useState } from "react";
 
-export interface Producto {
-  id: number;
+export interface ProductoUI {
+  id: string;
   nombre: string;
   descripcion: string;
-  precio: number;
-  material: string;
-  marca: string;
-  categoria: "Equipos" | "Herramientas" | "Insumos" | "Repuestos";
-  imagen: string;
+  precio: number | null;
+  material: string | null;
+  marca: string | null;
+  categoria: string;
+  imagen: string | null;
   disponible: boolean;
 }
-
-const CATEGORIAS = ["Todos", "Equipos", "Herramientas", "Insumos", "Repuestos"] as const;
 
 function formatPrecio(n: number) {
   return new Intl.NumberFormat("es-AR", {
@@ -24,13 +22,21 @@ function formatPrecio(n: number) {
   }).format(n);
 }
 
-export default function CatalogoGrid({ productos }: { productos: Producto[] }) {
-  const [categoriaActiva, setCategoriaActiva] = useState<string>("Todos");
+interface Props {
+  productos: ProductoUI[];
+  categorias: string[];
+}
+
+export default function CatalogoGrid({ productos, categorias }: Props) {
+  const TODAS = "Todos";
+  const [categoriaActiva, setCategoriaActiva] = useState<string>(TODAS);
 
   const filtrados =
-    categoriaActiva === "Todos"
+    categoriaActiva === TODAS
       ? productos
       : productos.filter((p) => p.categoria === categoriaActiva);
+
+  const allCategorias = [TODAS, ...categorias];
 
   return (
     <>
@@ -41,7 +47,7 @@ export default function CatalogoGrid({ productos }: { productos: Producto[] }) {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2">
-            {CATEGORIAS.map((cat) => (
+            {allCategorias.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setCategoriaActiva(cat)}
@@ -70,18 +76,27 @@ export default function CatalogoGrid({ productos }: { productos: Producto[] }) {
               >
                 {/* Imagen */}
                 <div className="aspect-square bg-kaizer-border/20 overflow-hidden relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={p.imagen}
-                    alt={p.nombre}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  {p.imagen ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={p.imagen}
+                      alt={p.nombre}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-kaizer-muted/30">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-16 w-16">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <path d="m21 15-5-5L5 21" />
+                      </svg>
+                    </div>
+                  )}
                   {!p.disponible && (
                     <div className="absolute inset-0 bg-kaizer-dark/70 flex items-center justify-center">
                       <span className="text-kaizer-muted text-sm font-medium">Sin stock</span>
                     </div>
                   )}
-                  {/* Badge de categoría */}
                   <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-xs bg-kaizer-dark/80 border border-kaizer-border text-kaizer-muted">
                     {p.categoria}
                   </span>
@@ -90,7 +105,7 @@ export default function CatalogoGrid({ productos }: { productos: Producto[] }) {
                 {/* Info */}
                 <div className="p-4 flex flex-col gap-3 flex-1">
                   <div className="flex flex-col gap-1">
-                    <span className="text-xs text-kaizer-muted">{p.marca}</span>
+                    {p.marca && <span className="text-xs text-kaizer-muted">{p.marca}</span>}
                     <h3 className="font-semibold text-kaizer-white leading-snug">
                       {p.nombre}
                     </h3>
@@ -100,19 +115,23 @@ export default function CatalogoGrid({ productos }: { productos: Producto[] }) {
                     {p.descripcion}
                   </p>
 
-                  {/* Material */}
-                  <div className="flex items-center gap-1.5 text-xs text-kaizer-muted">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-3.5 w-3.5 flex-shrink-0">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                    <span>Material: <strong className="text-kaizer-light">{p.material}</strong></span>
-                  </div>
+                  {p.material && (
+                    <div className="flex items-center gap-1.5 text-xs text-kaizer-muted">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-3.5 w-3.5 flex-shrink-0">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                      </svg>
+                      <span>Material: <strong className="text-kaizer-light">{p.material}</strong></span>
+                    </div>
+                  )}
 
-                  {/* Precio */}
                   <div className="pt-2 border-t border-kaizer-border">
-                    <p className="text-kaizer-cyan font-bold text-lg">
-                      {formatPrecio(p.precio)}
-                    </p>
+                    {p.precio ? (
+                      <p className="text-kaizer-cyan font-bold text-lg">
+                        {formatPrecio(p.precio)}
+                      </p>
+                    ) : (
+                      <p className="text-kaizer-muted text-sm">Consultar precio</p>
+                    )}
                   </div>
                 </div>
               </article>

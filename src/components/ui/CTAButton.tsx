@@ -5,50 +5,46 @@ type Variant = "primary" | "outline" | "ghost";
 type Size    = "sm" | "md" | "lg";
 
 interface CTAButtonProps {
-  children:  ReactNode;
-  href?:     string;          // Si tiene href → renderiza <Link>; si no → <button>
-  onClick?:  () => void;
-  variant?:  Variant;
-  size?:     Size;
-  fullWidth?: boolean;
-  disabled?:  boolean;
-  type?:     "button" | "submit" | "reset";
+  children:   ReactNode;
+  href?:      string;
+  onClick?:   () => void;
+  variant?:   Variant;
+  size?:      Size;
+  fullWidth?:  boolean;
+  disabled?:   boolean;
+  type?:      "button" | "submit" | "reset";
   className?: string;
 }
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-kaizer-cyan text-kaizer-dark border border-kaizer-cyan font-bold " +
-    "hover:bg-kaizer-cyan-light hover:border-kaizer-cyan-light " +
-    "shadow-[0_0_20px_rgba(0,192,222,0.25)] hover:shadow-[0_0_28px_rgba(0,192,222,0.40)] " +
-    "active:scale-[0.97]",
+    "bg-[#00C0DE] text-white border border-[#00C0DE] font-semibold " +
+    "hover:bg-[#009AB8] hover:border-[#009AB8] hover:scale-[1.02] " +
+    "shadow-[0_0_0_1px_rgba(0,192,222,0.15),0_2px_12px_rgba(0,192,222,0.18)] " +
+    "hover:shadow-[0_0_0_1px_rgba(0,192,222,0.25),0_4px_20px_rgba(0,192,222,0.28)] " +
+    "active:scale-[0.98]",
   outline:
-    "bg-transparent text-kaizer-cyan border-2 border-kaizer-cyan font-bold " +
-    "hover:bg-kaizer-cyan hover:text-kaizer-dark " +
-    "active:scale-[0.97]",
+    "bg-transparent text-[#00C0DE] border-2 border-[#00C0DE] font-semibold " +
+    "hover:bg-[#00C0DE] hover:text-white hover:scale-[1.02] " +
+    "active:scale-[0.98]",
   ghost:
-    "bg-transparent text-kaizer-white border border-transparent font-semibold " +
-    "hover:text-white hover:border-kaizer-border " +
-    "active:scale-[0.97]",
+    "bg-transparent text-[#3D5068] border border-transparent font-medium " +
+    "hover:text-[#0A0F1E] hover:bg-[#F6F9FC] hover:border-[#E4EBF5] " +
+    "active:scale-[0.98]",
 };
 
 const sizeClasses: Record<Size, string> = {
   sm: "px-5 py-2 text-sm",
-  md: "px-7 py-3 text-base",
-  lg: "px-9 py-3.5 text-base",
+  md: "px-7 py-2.5 text-sm",
+  lg: "px-8 py-3 text-base",
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] " +
+  "inline-flex items-center justify-center gap-2 rounded-full " +
   "transition-all duration-200 cursor-pointer tracking-wide select-none " +
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kaizer-cyan " +
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00C0DE] " +
   "disabled:opacity-50 disabled:pointer-events-none";
 
-/**
- * Botón CTA reutilizable.
- * Soporta variantes primary / outline / ghost y tres tamaños.
- * Cuando recibe `href` actúa como <Link> para navegación interna.
- */
 export default function CTAButton({
   children,
   href,

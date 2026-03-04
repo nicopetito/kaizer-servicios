@@ -20,7 +20,7 @@ export default function Container({
   return (
     <div
       className={[
-        "mx-auto w-full max-w-7xl",
+        "mx-auto w-full max-w-[1200px]",
         noPadding ? "" : "px-4 sm:px-6 lg:px-8",
         className,
       ]
